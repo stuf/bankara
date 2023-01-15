@@ -1,5 +1,6 @@
 import bpy
 
+# What should be cleaned up when run
 cleanup = {'materials', 'images'}
 
 if 'materials' in cleanup:

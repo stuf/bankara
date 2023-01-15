@@ -6,6 +6,10 @@ bl_info = {
 
 import bpy
 
+CLASSES = (None,
+           None
+           )
+
 
 def register():
     pass
