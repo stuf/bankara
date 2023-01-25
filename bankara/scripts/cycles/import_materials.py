@@ -1,3 +1,7 @@
+###
+# Disclaimer: don't use on anything important, at least without backups.
+# ^^^^^^^^^^^
+###
 import re
 import bpy
 from typing import Dict, List
@@ -7,6 +11,7 @@ from os.path import isfile, join
 CS_NON_COLOR = 'Non-Color'
 UNUSED_X = -600
 UNUSED_Y = 0
+
 NORMALMAP_NODE_GROUP = 'NormalMap'
 NORMALMAP_STRENGTH = 1.0
 
@@ -14,6 +19,10 @@ input = {
     'folder': r'/Users/piparkaq/Assets/Splatoon/Splatoon1/_Fld/Plaza00',
     # 'filename': 'Jyoheki03.fbx', # unused
     'image_format': 'png',
+    # Set 'use_nodegroup' to True if you use red-green normal maps
+    'use_nodegroup': True,
+    'normal_nodegroup_name': 'NormalMap',
+    'normalmap_strength': 1.0,
 }
 
 # Change these to modify naming of the materials imported
@@ -141,11 +150,17 @@ def handle_nrm(nodes, maptype=None, filepath=None, name=None):
     tex.label = maptype
     tex.hide = True
     tex.location = (-400, 300)
+    normal = None
 
-    normal = nodes.new('ShaderNodeGroup')
+    if input['use_nodegroup']:
+        normal = nodes.new('ShaderNodeGroup')
+        normal.node_tree = bpy.data.node_groups[input['normal_nodegroup_name']]
+        normal.inputs['Strength'].default_value = input['normalmap_strength']
+    else:
+        normal = nodes.new('ShaderNodeNormalMap')
+        normal.inputs['Strength'].default_value = input['normalmap_strength']
+
     normal.location = (-60, 135)
-    normal.node_tree = bpy.data.node_groups[NORMALMAP_NODE_GROUP]
-    normal.inputs['Strength'].default_value = 1.0
 
     return [(tex.outputs['Color'], normal.inputs['Color']),
             (normal.outputs['Normal'], nodes['BSDF'].inputs['Normal'])]
