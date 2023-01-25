@@ -1,3 +1,6 @@
+# This script originally from https://www.vg-resource.com/thread-41208.html
+# Big shoutouts to Jasper7438 for putting this together.
+#
 # This script renames Splatoon clothing model bone names/vertex groups to match those of Splatoon 3 clothing models.
 # To use this script, select the armature of a S2 clothing model, then run the script.
 # This script is based on this script: https://blender.stackexchange.com/questions/69505/renaming-bones-with-python.
