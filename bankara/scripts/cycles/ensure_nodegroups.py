@@ -11,7 +11,7 @@ node_groups = bpy.data.node_groups
 if NODETREE_NAME in node_groups:
     node_groups.remove(node_groups[NODETREE_NAME])
 
-g = bpy.data.node_groups.new('RG_Normal_Map', 'ShaderNodeTree')
+g = bpy.data.node_groups.new('NormalMap', 'ShaderNodeTree')
 nodes = g.nodes
 links = g.links
 
