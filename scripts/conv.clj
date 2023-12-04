@@ -3,6 +3,7 @@
 (require '[babashka.process :refer [shell]])
 (require '[clojure.pprint :refer [pprint]])
 
+;; TODO Extract these out into CLI usage
 (def settings {:in-path "C:\\Blender\\work\\_gear\\textures\\tops"
                :glob "**.dae"
                :tool-path "C:\\Program Files\\Autodesk\\FBX\\FBX Converter\\2013.3\\bin\\FbxConverter.exe"})
@@ -17,7 +18,7 @@
 (defn collect-convertable
   "Gather a list of DAE files that need to be converted to FBX."
   [file-list]
-  ;; first find files that need converting 
+  ;; first find files that need converting
   (loop [xs (seq file-list)
          result []]
     (if xs
