@@ -4,7 +4,7 @@
 (require '[clojure.pprint :refer [pprint]])
 
 ;; TODO Extract these out into CLI usage
-(def settings {:in-path "C:\\Blender\\work\\_gear\\textures\\tops"
+(def settings {:in-path "W:\\Blender\\work\\__RESOURCES"
                :glob "**.dae"
                :tool-path "C:\\Program Files\\Autodesk\\FBX\\FBX Converter\\2013.3\\bin\\FbxConverter.exe"})
 
